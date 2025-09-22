@@ -3,25 +3,25 @@ version: "3.8"
 services:
   # Backend (NestJS)
   backend:
-    build: ./backend
+    build: ./chronobackend
     container_name: nestjs-app
     restart: always
     ports:
       - "3001:3001"
     env_file:
-      - ./backend/.env
+      - ./chronobackend/.env
     depends_on:
       - db
 
   # Frontend (Next.js)
   frontend:
-    build: ./frontend
+    build: ./chronofrontend
     container_name: nextjs-frontend
     restart: always
     ports:
       - "3000:3000"
     env_file:
-      - ./frontend/.env
+      - ./chronofrontend/.env
     depends_on:
       - app
     volumes:
