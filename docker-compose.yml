@@ -23,16 +23,16 @@ services:
     env_file:
       - ./chronofrontend/.env
     depends_on:
-      - app
+      - backend
     volumes:
-      - ./frontend:/usr/src/app
+      - ./chronofrontend:/usr/src/app
       - /usr/src/app/node_modules
     command: npm run dev
 
   # Database (MySQL)
   db:
     image: mysql:8
-    container_name: nestjs-db
+    container_name: mysql-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: samih123@
@@ -44,6 +44,5 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-
 volumes:
-  postgres_data:
+  mysql_data:
