@@ -35,9 +35,9 @@ services:
     container_name: nestjs-db
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: chronodb
+      POSTGRES_USER: samih_jeridi
+      POSTGRES_PASSWORD: samih123@
+      POSTGRES_DB: chrono_carto
     ports:
       - "5432:5432"
     volumes:
