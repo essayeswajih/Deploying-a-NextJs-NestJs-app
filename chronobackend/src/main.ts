@@ -26,7 +26,11 @@ async function bootstrap() {
       'http://51.77.195.224:3000',
       'http://51.77.195.224:3001',
       'https://51.77.195.224:3000',
-      'https://51.77.195.224:3001'
+      'https://51.77.195.224:3001',
+      'http://frontend:3000',
+      'http://frontend:3001',
+      'https://frontend:3000',
+      'https://frontend:3001',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With'],

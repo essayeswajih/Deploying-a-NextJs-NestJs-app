@@ -29,19 +29,21 @@ services:
       - /usr/src/app/node_modules
     command: npm run dev
 
-  # Database (Postgres)
+  # Database (MySQL)
   db:
-    image: postgres:15
+    image: mysql:8
     container_name: nestjs-db
     restart: always
     environment:
-      POSTGRES_USER: samih_jeridi
-      POSTGRES_PASSWORD: samih123@
-      POSTGRES_DB: chrono_carto
+      MYSQL_ROOT_PASSWORD: samih123@
+      MYSQL_DATABASE: chrono_carto
+      MYSQL_USER: samih_jeridi
+      MYSQL_PASSWORD: samih123@
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
+
 
 volumes:
   postgres_data:

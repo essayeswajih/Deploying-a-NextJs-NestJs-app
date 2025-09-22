@@ -194,10 +194,10 @@ export class QuizzesService {
     
     // Créer une connexion directe
     const connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'chrono_carto'
+      host: process.env.DB_HOST || 'db',
+      user: process.env.DB_USERNAME || 'dbuser',
+      password: process.env.DB_PASSWORD || 'dbpassword',
+      database: process.env.DB_NAME||'chrono_carto'
     });
     
     let saved;
