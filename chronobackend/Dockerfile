@@ -1,14 +1,31 @@
+# Stage 1: Build the app
+FROM node:18-alpine AS builder
+
+WORKDIR /usr/src/app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
+
+# Copy source code
+COPY . .
+
+# Build TypeScript code
+RUN npm run build
+
+# Stage 2: Production image
 FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
+# Copy only compiled JS and node_modules
+COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY package*.json ./
-RUN npm install --legacy-peer-deps
 
-COPY . .
-
-RUN npm run build
-
+# Expose API port
 EXPOSE 3001
 
-CMD ["npm", "run", "start:prod"]
+# Run NestJS in production
+CMD ["node", "dist/main.js"]
+
