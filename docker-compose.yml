@@ -62,25 +62,27 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/conf.d/chronocarto.conf:/etc/nginx/conf.d/chronocarto.conf
       - ./nginx/certbot/www:/var/www/certbot
       - ./nginx/certbot/conf:/etc/letsencrypt
 
-  # Certbot for SSL
+  # Certbot for SSL (runs on-demand, not as a service)
   certbot:
     image: certbot/certbot
     container_name: certbot
     volumes:
       - ./nginx/certbot/www:/var/www/certbot
       - ./nginx/certbot/conf:/etc/letsencrypt
-    entrypoint: >
-      sh -c "certbot certonly --webroot 
-      --webroot-path=/var/www/certbot 
-      --email wajihsayes@gmail.com 
-      --agree-tos 
-      --no-eff-email 
-      -d chronocarto.tn 
-      -d www.chronocarto.tn"
+    command: certonly --webroot --webroot-path=/var/www/certbot --email wajihsayes@gmail.com --agree-tos --no-eff-email -d chronocarto.tn -d www.chronocarto.tn
+
+  # Certbot renewal service
+  certbot-renew:
+    image: certbot/certbot
+    container_name: certbot-renew
+    volumes:
+      - ./nginx/certbot/www:/var/www/certbot
+      - ./nginx/certbot/conf:/etc/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h; done;'"
 
 volumes:
   mysql_data:
