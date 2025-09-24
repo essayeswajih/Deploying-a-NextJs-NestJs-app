@@ -1,35 +1,30 @@
 // src/config/database.config.ts
 import 'reflect-metadata';
-import { DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-/**
- * Named export for NestJS modules
- */
-export const databaseConfig = {
-  type: 'mysql' as const,
-  host: process.env.DB_HOST || 'db', // use Docker service name 'db' in containers
-  port: parseInt(process.env.DB_PORT || '3306'),
+export const databaseConfig: DataSourceOptions = {
+  type: 'mysql',
+  host: process.env.DB_HOST || 'db',
+  port: parseInt(process.env.DB_PORT || '3306', 10),
   username: process.env.DB_USERNAME || 'samih_jeridi',
   password: process.env.DB_PASSWORD || 'samih123@',
   database: process.env.DB_NAME || 'chrono_carto',
-  entities: ['dist/modules/**/entities/*.js'],
-  migrations: ['dist/migrations/*.js'],
+  entities:
+    process.env.NODE_ENV === 'production'
+      ? ['dist/modules/**/entities/*.js']
+      : ['src/modules/**/entities/*.ts'],
+  migrations:
+    process.env.NODE_ENV === 'production'
+      ? ['dist/migrations/*.js']
+      : ['src/migrations/*.ts'],
   synchronize: false,
-  logging: true,       // enable SQL logs
+  logging: true,
   dropSchema: false,
   migrationsRun: true,
-  retryAttempts: 10,
-  retryDelay: 3000, // ms
-  autoLoadEntities: true,
 };
 
-/**
- * Default export for TypeORM CLI
- */
-export default new DataSource({
-  ...databaseConfig,
-  migrations: ['src/migrations/*.js'], // CLI uses TS source files
-});
+// Named export for CommonJS compatibility
+export const AppDataSource = new DataSource(databaseConfig);

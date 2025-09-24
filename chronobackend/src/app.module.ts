@@ -25,6 +25,8 @@ import { AppService } from './app.service';
     TypeOrmModule.forRoot({
       ...databaseConfig,
       autoLoadEntities: true,
+      retryAttempts: 10,
+      retryDelay: 3000,
     }),
     AuthModule,
     UsersModule,
