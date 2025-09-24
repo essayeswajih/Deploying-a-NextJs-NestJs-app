@@ -41,3 +41,7 @@ EXPOSE 3001
 
 # Default: run NestJS production
 CMD ["node", "--experimental-specifier-resolution=node", "dist/main.js"]
+
+# npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate src/migrations/YourMigrationName -d src/config/database.config.ts
+# npm run build
+# npx typeorm migration:run -d dist/config/database.config.js
