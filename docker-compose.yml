@@ -11,7 +11,8 @@ services:
     env_file:
       - ./chronobackend/.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   # Frontend (Next.js)
   frontend:
@@ -23,7 +24,8 @@ services:
     env_file:
       - ./chronofrontend/.env
     depends_on:
-      - backend
+      backend:
+        condition: service_started
     volumes:
       - ./chronofrontend:/usr/src/app
       - /usr/src/app/node_modules
@@ -43,6 +45,13 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-psamih123@"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
 volumes:
   mysql_data:
+

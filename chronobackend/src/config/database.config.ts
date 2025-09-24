@@ -20,7 +20,7 @@ export const databaseConfig = {
   synchronize: false,
   logging: true,       // enable SQL logs
   dropSchema: false,
-  migrationsRun: false,
+  migrationsRun: true,
   retryAttempts: 10,
   retryDelay: 3000, // ms
   autoLoadEntities: true,
@@ -31,5 +31,5 @@ export const databaseConfig = {
  */
 export default new DataSource({
   ...databaseConfig,
-  migrations: ['src/migrations/*.ts'], // CLI uses TS source files
+  migrations: ['src/migrations/*.js'], // CLI uses TS source files
 });
