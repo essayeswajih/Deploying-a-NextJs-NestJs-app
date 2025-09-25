@@ -43,7 +43,7 @@ export default function VerifyEmailPage() {
     setMessage('');
     
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       const response = await fetch(`${API_BASE}/auth/resend-verification`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -79,7 +79,7 @@ export default function VerifyEmailPage() {
     setMessage('');
     
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       const response = await fetch(`${API_BASE}/auth/check-verification`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

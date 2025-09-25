@@ -1,7 +1,7 @@
 // API service for connecting to backend endpoints
 import { ERROR_MESSAGES } from './errorMessages';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 // Generic API request function
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
@@ -139,7 +139,7 @@ export const adminAPI = {
   approveUser: async (id: number, approve: boolean) => {
     try {
       // Essayer d'abord le backend
-      const backendUrl = `${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/admin/users/${id}/approve`;
+      const backendUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/admin/users/${id}/approve`;
       const response = await fetch(backendUrl, {
         method: 'PATCH',
         headers: {

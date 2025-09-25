@@ -164,7 +164,7 @@ const DashboardOverviewTab = () => {
     // Charger les données d'activité récente réelles depuis l'API
     const loadRecentActivity = async () => {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         
         // Récupérer les dernières tentatives de quiz
         const attemptsResponse = await fetch(`${API_BASE}/quiz-attempts/recent`);
@@ -195,7 +195,7 @@ const DashboardOverviewTab = () => {
     setIsLoading(true);
     try {
       // Recharger les statistiques réelles
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       
       // Recharger les données d'activité récente
       const attemptsResponse = await fetch(`${API_BASE}/quiz-attempts/recent`);

@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
       // Envoyer l'email de vérification
       try {
         console.log('📧 Debug - Envoi de l\'email de vérification...');
-        const emailResponse = await fetch(`${process.env.NEXTAUTH_URL || 'https://www.chronocarto.tn'}/api/auth/send-verification-email`, {
+        const emailResponse = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/auth/send-verification-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

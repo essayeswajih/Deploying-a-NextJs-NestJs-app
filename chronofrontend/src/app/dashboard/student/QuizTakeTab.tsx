@@ -134,14 +134,14 @@ const QuizTakeTab: React.FC<QuizTakeTabProps> = ({ quizId, onComplete, onBack, o
   const loadQuizData = async () => {
     try {
       // Load quiz data from API
-      const quizResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes/${quizId}`);
+      const quizResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes/${quizId}`);
       if (!quizResponse.ok) {
         throw new Error('Failed to load quiz');
       }
       const quizData = await quizResponse.json();
 
       // Load questions for this quiz
-      const questionsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes/${quizId}/questions`);
+      const questionsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes/${quizId}/questions`);
       if (!questionsResponse.ok) {
         throw new Error('Failed to load questions');
       }
@@ -216,7 +216,7 @@ const QuizTakeTab: React.FC<QuizTakeTabProps> = ({ quizId, onComplete, onBack, o
       const studentId = user.studentDetails?.id || user.id;
 
       // Check if student has already attempted this quiz
-      const attemptsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes/attempts?quiz_id=${quizId}&student_id=${studentId}`);
+      const attemptsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes/attempts?quiz_id=${quizId}&student_id=${studentId}`);
       if (attemptsResponse.ok) {
         const attempts = await attemptsResponse.json();
         if (attempts && attempts.length > 0) {
@@ -581,7 +581,7 @@ const QuizTakeTab: React.FC<QuizTakeTabProps> = ({ quizId, onComplete, onBack, o
         answers: answers
       };
 
-      const submitResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes/attempts`, {
+      const submitResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes/attempts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

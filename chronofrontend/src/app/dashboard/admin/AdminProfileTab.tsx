@@ -57,7 +57,7 @@ const AdminProfileTab = () => {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       
       if (token) {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         
         const response = await fetch(`${API_BASE}/auth/me`, {
           headers: {
@@ -97,7 +97,7 @@ const AdminProfileTab = () => {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       
       if (token) {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         
         const response = await fetch(`${API_BASE}/pdp/me`, {
           headers: {
@@ -121,7 +121,7 @@ const AdminProfileTab = () => {
     try {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       if (token) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/auth/update-profile`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/auth/update-profile`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -162,7 +162,7 @@ const AdminProfileTab = () => {
     try {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       if (token) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/auth/change-password`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/auth/change-password`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`,

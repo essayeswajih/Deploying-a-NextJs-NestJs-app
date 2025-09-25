@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       console.log('📧 Debug - Email de vérification simulé:');
       console.log('📧 À:', email);
       console.log('📧 Token:', verificationToken);
-      console.log('📧 Lien de vérification:', `https://www.chronocarto.tn/verify-email?token=${verificationToken}`);
+      console.log('📧 Lien de vérification:', `http://localhost:3000/verify-email?token=${verificationToken}`);
 
       await connection.end();
 
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Email de vérification envoyé (simulé en développement)',
         token: verificationToken, // Pour le développement seulement
-        verificationLink: `https://www.chronocarto.tn/verify-email?token=${verificationToken}`
+        verificationLink: `http://localhost:3000/verify-email?token=${verificationToken}`
       });
 
     } catch (dbError) {
