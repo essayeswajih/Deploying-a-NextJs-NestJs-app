@@ -1,16 +1,13 @@
-FROM node:18-alpine
+FROM node:20
 
 WORKDIR /usr/src/app
 
-# Copy dependencies first
 COPY package*.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install
 
-# Copy source code
+# Copy everything (including src/app/globals.css)
 COPY . .
 
-# Expose port 3000
 EXPOSE 3000
-
-# Run dev mode instead of build
 CMD ["npm", "run", "dev"]
+
