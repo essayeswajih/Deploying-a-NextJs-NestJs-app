@@ -24,7 +24,7 @@ services:
     depends_on:
       backend:
         condition: service_started
-    command: npm run start
+    command: npm run dev
 
   # Database (MySQL)
   db:
