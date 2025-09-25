@@ -229,7 +229,7 @@ const ProfileTab: React.FC = () => {
         setUserId(user.id);
         
         // Récupérer les données de l'étudiant depuis l'API
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
         const token = localStorage.getItem('token');
         
         let studentData = null;
@@ -369,7 +369,7 @@ const ProfileTab: React.FC = () => {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       
       if (token && userId) {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
         
         const response = await fetch(`${API_BASE}/pdp/me`, {
           headers: {

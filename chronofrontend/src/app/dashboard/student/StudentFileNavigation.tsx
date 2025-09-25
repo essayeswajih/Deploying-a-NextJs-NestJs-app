@@ -73,7 +73,7 @@ const StudentFileNavigation: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
 
   // Charger les dossiers accessibles à l'étudiant
   const loadDossiers = async () => {

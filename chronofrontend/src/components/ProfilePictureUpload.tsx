@@ -81,7 +81,7 @@ const ProfilePictureUpload: React.FC<ProfilePictureUploadProps> = ({
       formData.append('profilePicture', file);
 
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
 
       // Essayer d'abord le backend
       let response;
@@ -152,7 +152,7 @@ const ProfilePictureUpload: React.FC<ProfilePictureUploadProps> = ({
 
     try {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
 
       const response = await fetch(`${API_BASE}/pdp/me`, {
         method: 'DELETE',

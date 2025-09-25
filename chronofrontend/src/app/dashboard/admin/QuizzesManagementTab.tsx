@@ -177,7 +177,7 @@ const QuizzesManagementTab = () => {
   };
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
     const load = async () => {
       setIsLoading(true);
       try {
@@ -241,7 +241,7 @@ const QuizzesManagementTab = () => {
   const handleDeleteQuiz = async (quiz: Quiz) => {
     setIsLoading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       await fetch(`${API_BASE}/quizzes/${quiz.id}`, { method: 'DELETE' });
       setQuizzes(prev => prev.filter(q => q.id !== quiz.id));
       
@@ -261,7 +261,7 @@ const QuizzesManagementTab = () => {
   const handleEditQuiz = async (updatedQuiz: Quiz) => {
     setIsLoading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       await fetch(`${API_BASE}/quizzes/${updatedQuiz.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -299,7 +299,7 @@ const QuizzesManagementTab = () => {
   const handleCreateQuiz = async (newQuiz: Partial<Quiz>) => {
     setIsLoading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const res = await fetch(`${API_BASE}/quizzes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -379,7 +379,7 @@ const QuizzesManagementTab = () => {
       };
 
       // Envoyer la requête au backend
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -430,7 +430,7 @@ const QuizzesManagementTab = () => {
     const load = async () => {
       setIsLoading(true);
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
         const res = await fetch(`${API_BASE}/quizzes`);
         const json = await res.json();
         const mapped: Quiz[] = (json.items || []).map((q: any) => ({

@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Utiliser l'API backend au lieu de la connexion directe à la base de données
-    const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
     
     // Récupérer les tentatives de quiz depuis l'API backend
     const attemptsResponse = await fetch(`${backendUrl}/quizzes/attempts?student_id=${studentId}`);

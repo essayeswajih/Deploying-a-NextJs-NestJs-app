@@ -4,8 +4,8 @@ export const APP_DESCRIPTION = 'Plateforme pédagogique Histoire-Géographie';
 export const APP_VERSION = '1.0.0';
 
 // API Configuration
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.chronocarto.tn';
 
 // Authentication
 export const TOKEN_KEY = 'auth_token';

@@ -19,8 +19,8 @@ async function bootstrap() {
   // Configuration CORS
   app.enableCors({
     origin: [
-      'http://localhost:3000',
-      'http://localhost:3001',
+      'https://www.chronocarto.tn',
+      'https://www.chronocarto.tn/api',
       'http://192.168.1.11:3000',
       'http://192.168.1.11:3001',
       'http://51.77.195.224:3000',

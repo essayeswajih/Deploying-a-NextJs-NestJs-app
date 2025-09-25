@@ -127,7 +127,7 @@ export class PdpService {
     if (!pdp) return null;
     
     // Retourner l'URL complète avec le port du backend
-    const backendUrl = process.env.BACKEND_URL || 'http://localhost:3001';
+    const backendUrl = process.env.BACKEND_URL || 'https://www.chronocarto.tn/api';
     return `${backendUrl}/uploads/profiles/${pdp.storedName}`;
   }
 }

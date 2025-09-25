@@ -160,7 +160,7 @@ const FileManagementTabImproved = () => {
   // Fonctions pour la gestion des dossiers
   const loadFolders = async () => {
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       if (!token) {
@@ -190,7 +190,7 @@ const FileManagementTabImproved = () => {
 
   const loadFolderContents = async (folderId: number) => {
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       if (!token) {
@@ -220,7 +220,7 @@ const FileManagementTabImproved = () => {
 
   const loadSousDossierFiles = async (sousDossierId: number) => {
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       if (!token) {
@@ -317,7 +317,7 @@ const FileManagementTabImproved = () => {
 
     setIsUploading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       let response;
@@ -379,7 +379,7 @@ const FileManagementTabImproved = () => {
   const deleteFolder = async (folder: FolderFromDB) => {
     setIsUploading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       let response;
@@ -544,7 +544,7 @@ const FileManagementTabImproved = () => {
       formData.append('description', courseDescription);
       formData.append('sous_dossier_id', currentFolderId?.toString() || '');
 
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       if (!token) {
@@ -621,7 +621,7 @@ const FileManagementTabImproved = () => {
       }
       
       // Créer côté backend puis rafraîchir la liste
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       
       // Vérifier l'authentification
       const token = getAuthToken();
@@ -664,7 +664,7 @@ const FileManagementTabImproved = () => {
   const handleDelete = async (course: Course) => {
     setIsLoading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       console.log(`🗑️ Tentative de suppression du fichier ID: ${course.id}`);
@@ -707,7 +707,7 @@ const FileManagementTabImproved = () => {
   const handleUpdateTargetClasses = async (fileId: string, newTargetClasses: string[]) => {
     setIsLoading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const token = getAuthToken();
       
       const response = await fetch(`${API_BASE}/new-structure/fichiers/${fileId}`, {
@@ -747,7 +747,7 @@ const FileManagementTabImproved = () => {
   const handleEdit = async (updatedCourse: Course) => {
     setIsLoading(true);
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const response = await fetch(`${API_BASE}/files/${updatedCourse.id}`, {
         method: 'PATCH',
         headers: { 
@@ -784,7 +784,7 @@ const FileManagementTabImproved = () => {
   // Fonction de téléchargement
   const handleDownload = async (course: Course) => {
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       
       // Afficher un indicateur de chargement
       const loadingElement = document.createElement('div');

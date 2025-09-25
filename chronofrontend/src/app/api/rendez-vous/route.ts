@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
       const requestUrl = new URL(request.url);
       const authHeader = request.headers.get('authorization');
       const queryString = requestUrl.searchParams.toString();
-      const backendUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/rendez-vous${queryString ? `?${queryString}` : ''}`;
+      const backendUrl = `${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/api/rendez-vous${queryString ? `?${queryString}` : ''}`;
       const response = await fetch(backendUrl, {
         method: 'GET',
         headers: {
