@@ -74,7 +74,7 @@ function generateMockData(type) {
       ];
     case 'messages':
       return [
-        { id: 1, from: 'Enseignant', to: 'Parent', subject: 'Progrès de l'élève', content: 'Message de test', date: new Date().toISOString() }
+        { id: 1, from: 'Enseignant', to: 'Parent', subject: 'Progrès de lélève', content: 'Message de test', date: new Date().toISOString() }
       ];
     case 'files':
       return [

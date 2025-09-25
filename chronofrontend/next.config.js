@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
   // Allow cross-origin requests from your domain
   allowedDevOrigins: ['www.chronocarto.tn', '51.77.195.224'],
   images: {
