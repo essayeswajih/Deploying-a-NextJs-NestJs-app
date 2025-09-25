@@ -24,10 +24,7 @@ services:
     depends_on:
       backend:
         condition: service_started
-    volumes:
-      - ./chronofrontend:/usr/src/app
-      - /usr/src/app/node_modules
-    command: npm run dev
+    command: npm run start
 
   # Database (MySQL)
   db:
