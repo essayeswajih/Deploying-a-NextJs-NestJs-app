@@ -20,7 +20,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'https://www.chronocarto.tn',
-      'https://www.chronocarto.tn/api',
+      'https://chronocarto.tn',
       'http://192.168.1.11:3000',
       'http://192.168.1.11:3001',
       'http://51.77.195.224:3000',
@@ -43,6 +43,9 @@ async function bootstrap() {
     forbidNonWhitelisted: false,
     transform: true,
   }));
+
+  // Préfixe global pour toutes les routes API
+  app.setGlobalPrefix('api');
 
   const port = process.env.PORT || 3001;
   await app.listen(port, '0.0.0.0');
