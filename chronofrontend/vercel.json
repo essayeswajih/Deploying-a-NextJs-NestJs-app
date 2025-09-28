@@ -7,7 +7,8 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://chrono-carto-api.vercel.app"
+    "NEXT_PUBLIC_API_URL": "https://www.chronocarto.tn/api",
+    "NEXT_PUBLIC_APP_URL": "https://www.chronocarto.tn"
   },
   "functions": {
     "src/app/api/**/*.ts": {

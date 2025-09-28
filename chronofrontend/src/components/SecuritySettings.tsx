@@ -97,7 +97,7 @@ const SecuritySettings: React.FC<SecuritySettingsProps> = ({ userId, currentEmai
     setIsLoading(true);
     try {
       // Utilisation de la vraie API avec base de données
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
       const response = await fetch(`${API_BASE}/auth/change-email`, {
         method: 'POST',
         headers: {

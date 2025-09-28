@@ -128,7 +128,7 @@ const StudentDashboard = () => {
   const { stats: realStats } = useRealStats();
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
     try {
       const raw = typeof window !== 'undefined' ? localStorage.getItem('userDetails') : null;
       if (!raw) return;

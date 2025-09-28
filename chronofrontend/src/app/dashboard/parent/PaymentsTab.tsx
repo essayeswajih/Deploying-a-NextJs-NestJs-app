@@ -90,7 +90,7 @@ const PaymentsTab: React.FC<PaymentsTabProps> = ({ parent, selectedChild, search
 
       console.log('🔍 Chargement des paiements pour userId:', userId);
 
-      const response = await fetch(`/api/payments?userId=${userId}`);
+      const response = await fetch(`/api/parents/payments?userId=${userId}`);
       
       if (!response.ok) {
         const errorData = await response.json();

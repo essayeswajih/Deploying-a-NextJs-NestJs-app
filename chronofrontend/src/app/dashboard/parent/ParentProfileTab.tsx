@@ -93,7 +93,7 @@ const ParentProfileTab: React.FC = () => {
         console.log('🔍 Chargement du profil parent pour l\'utilisateur:', user);
         
         // Récupérer les données du parent depuis l'API
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
         const token = localStorage.getItem('token');
         
         let parentData = null;
@@ -189,7 +189,7 @@ const ParentProfileTab: React.FC = () => {
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       
       if (token && userId) {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
         
         const response = await fetch(`${API_BASE}/pdp/me`, {
           headers: {
