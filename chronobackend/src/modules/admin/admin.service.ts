@@ -223,16 +223,69 @@ export class AdminService {
   async setUserApproval(userId: number, approve: boolean) {
     // The ID passed is the user ID, so we can directly update the user
     try {
+      // First, check if the user exists
+      const existingUser = await this.usersService.findById(userId);
+      if (!existingUser) {
+        console.error(`❌ User ${userId} not found`);
+        throw new Error(`Utilisateur avec l'ID ${userId} non trouvé`);
+      }
+
+      console.log(`🔄 Updating user ${userId} (${existingUser.email}) approval status to: ${approve}`);
+      
       const updatedUser = await this.usersService.update(userId, { 
         is_approved: approve, 
         is_active: approve 
       } as any);
       
       console.log(`✅ User ${userId} approval status updated to: ${approve}`);
-      return updatedUser;
+      return {
+        success: true,
+        message: `Utilisateur ${existingUser.email} ${approve ? 'approuvé' : 'désapprouvé'} avec succès`,
+        user: updatedUser
+      };
     } catch (error) {
       console.error(`❌ Error updating user ${userId} approval:`, error);
       throw new Error(`Erreur lors de la mise à jour de l'utilisateur: ${error.message}`);
+    }
+  }
+
+  async deleteUser(userId: number) {
+    console.log(`������️ Admin attempting to delete user ${userId}`);
+    
+    try {
+      // Find the user first to check what type of profile they have
+      const user = await this.usersService.findById(userId);
+      if (!user) {
+        throw new Error('Utilisateur non trouvé');
+      }
+      
+      console.log(`������ Found user ${userId} with role: ${user.role}`);
+      
+      // Delete associated profiles first based on user role
+      if (user.role === UserRole.STUDENT) {
+        const student = await this.studentsService.findByUserId(userId);
+        if (student) {
+          console.log(`������️ Deleting student profile ${student.id}`);
+          await this.studentsService.remove(student.id);
+        }
+      } else if (user.role === UserRole.PARENT) {
+        const parent = await this.parentsService.findByUserId(userId);
+        if (parent) {
+          console.log(`������️ Deleting parent profile ${parent.id}`);
+          await this.parentsService.remove(parent.id);
+        }
+      }
+      
+      // Finally delete the user
+      console.log(`������️ Deleting user ${userId}`);
+      await this.usersService.remove(userId);
+      
+      console.log(`✅ User ${userId} successfully deleted`);
+      return { success: true, message: `Utilisateur ${user.email} supprimé avec succès` };
+      
+    } catch (error) {
+      console.error(`❌ Error deleting user ${userId}:`, error);
+      throw new Error(`Erreur lors de la suppression de l'utilisateur: ${error.message}`);
     }
   }
 

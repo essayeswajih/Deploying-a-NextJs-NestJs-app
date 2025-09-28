@@ -1,7 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { UserRole } from '../users/entities/user.entity';
 
 @Controller('admin')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN)
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
@@ -49,8 +55,25 @@ export class AdminController {
 
   // User approval
   @Patch('users/:id/approve')
-  approveUser(@Param('id') id: string, @Body() body: { approve: boolean }) {
-    return this.adminService.setUserApproval(parseInt(id), !!body?.approve);
+  async approveUser(@Param('id') id: string, @Body() body: { approve: boolean }) {
+    try {
+      const userId = parseInt(id);
+      if (isNaN(userId)) {
+        throw new Error('ID utilisateur invalide');
+      }
+      
+      const result = await this.adminService.setUserApproval(userId, !!body?.approve);
+      return result;
+    } catch (error) {
+      console.error(`❌ Error in approveUser controller:`, error);
+      throw error;
+    }
+  }
+
+  // Generic user deletion
+  @Delete('users/:id')
+  deleteUser(@Param('id') id: string) {
+    return this.adminService.deleteUser(parseInt(id));
   }
 
   // Clean test users
