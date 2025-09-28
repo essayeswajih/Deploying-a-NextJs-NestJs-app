@@ -8,8 +8,18 @@ services:
     restart: always
     ports:
       - "3001:3001"
-    env_file:
-      - ./chronobackend/.env
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - DB_HOST=mysql-db
+      - DB_PORT=3306
+      - DB_USERNAME=samih_jeridi
+      - DB_PASSWORD=samih123@
+      - DB_DATABASE=chrono_carto
+      - FRONTEND_URL=https://www.chronocarto.tn
+      - BACKEND_URL=https://www.chronocarto.tn/api
+      - JWT_SECRET=your_jwt_secret_here
+      - JWT_EXPIRES_IN=24h
     depends_on:
       db:
         condition: service_healthy
@@ -19,8 +29,10 @@ services:
     build: ./chronofrontend
     container_name: frontend
     restart: always
-    env_file:
-      - ./chronofrontend/.env
+    environment:
+      - NEXT_PUBLIC_API_URL=https://www.chronocarto.tn/api
+      - NEXT_PUBLIC_APP_URL=https://www.chronocarto.tn
+      - NODE_ENV=production
     depends_on:
       backend:
         condition: service_started

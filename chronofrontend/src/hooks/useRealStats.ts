@@ -34,7 +34,7 @@ export const useRealStats = () => {
     setError(null);
     
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       
       // Récupérer l'utilisateur connecté
       const userDetails = localStorage.getItem('userDetails');
