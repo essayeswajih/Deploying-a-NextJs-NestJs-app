@@ -127,6 +127,7 @@ export class StudentsService {
     const payload: any = { ...dto };
     if (dto.birth_date) payload.birth_date = new Date(dto.birth_date as any);
     if (dto.last_activity) payload.last_activity = new Date(dto.last_activity as any);
+    payload.phone = dto.phone_number ?? payload.phone_number;
     await this.studentsRepository.update(id, payload);
     return this.findOne(id);
   }

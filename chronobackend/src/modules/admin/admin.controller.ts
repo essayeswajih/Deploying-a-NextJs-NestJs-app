@@ -24,6 +24,7 @@ export class AdminController {
 
   @Patch('students/:id')
   updateStudent(@Param('id') id: string, @Body() body: any) {
+    console .log('Update student body:', body);
     return this.adminService.updateStudentWithUser(parseInt(id), body);
   }
 
