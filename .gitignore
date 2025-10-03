@@ -1,1 +1,33 @@
+# =====================
+# Node / Next.js
+# =====================
+node_modules/
+.next/
+dist/
+build/
+*.log
+
+# =====================
+# Nginx & Certbot (local VPS config)
+# =====================
+nginx/conf.d/
 nginx/certbot/conf/
+nginx/certbot/www/
+nginx/certbot/logs/
+
+# =====================
+# Databases / dumps
+# =====================
+*.sql
+*.sqlite
+*.db
+
+# =====================
+# OS / Editor junk
+# =====================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
