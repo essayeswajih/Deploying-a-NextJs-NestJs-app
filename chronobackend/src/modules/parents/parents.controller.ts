@@ -20,36 +20,6 @@ export class ParentsController {
     return this.parentsService.findByUserIdWithUser(parseInt(userId));
   }
 
-  @Get('by-user/:userId/children')
-  async getChildrenByUserId(@Param('userId') userId: string) {
-    return this.parentsService.getChildrenByUserId(parseInt(userId));
-  }
-
-  @Get('children')
-  async getChildrenByParentId(@Query('parentId') parentId: string) {
-    return this.parentsService.getChildren(parseInt(parentId));
-  }
-
-  @Get('debug/relations')
-  async debugRelations() {
-    return this.parentsService.debugRelations();
-  }
-
-  @Post('fix-relations')
-  async fixRelations() {
-    return this.parentsService.fixRelations();
-  }
-
-  @Get('check-user/:userId')
-  async checkUserRelations(@Param('userId') userId: string) {
-    return this.parentsService.checkUserRelations(parseInt(userId));
-  }
-
-  @Get(':id/children')
-  async getChildren(@Param('id') id: string) {
-    return this.parentsService.getChildren(parseInt(id));
-  }
-
   @Get(':id/child')
   async getChild(@Param('id') id: string) {
     return this.parentsService.getChild(parseInt(id));

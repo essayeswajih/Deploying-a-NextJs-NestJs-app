@@ -272,7 +272,7 @@ const UsersManagementTab: React.FC<UsersManagementTabProps> = ({
   // Fonction pour récupérer les données du parent d'un étudiant
   const fetchParentDataForStudent = async (studentId: number) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/students/${studentId}/parent`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/students/${studentId}/parent`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('accessToken') || localStorage.getItem('token')}`,
         },
@@ -289,7 +289,7 @@ const UsersManagementTab: React.FC<UsersManagementTabProps> = ({
   // Fonction pour récupérer les données de l'enfant d'un parent
   const fetchChildDataForParent = async (parentId: number) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/parents/${parentId}/child`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/parents/${parentId}/child`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('accessToken') || localStorage.getItem('token')}`,
         },
@@ -331,7 +331,7 @@ const UsersManagementTab: React.FC<UsersManagementTabProps> = ({
       };
 
       // Appeler l'API backend
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       
       // Utiliser directement l'ID de l'utilisateur (plus fiable que la recherche par email)
@@ -513,7 +513,7 @@ const UsersManagementTab: React.FC<UsersManagementTabProps> = ({
         console.log('🔍 Creating student with data:', registrationData);
         console.log('🔍 Phone field value:', (newUser as any).phone_number);
         
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         const response = await fetch(`${API_BASE}/auth/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -545,7 +545,7 @@ const UsersManagementTab: React.FC<UsersManagementTabProps> = ({
           childPassword: mainPassword // Même mot de passe que le parent
         };
         
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         const response = await fetch(`${API_BASE}/auth/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

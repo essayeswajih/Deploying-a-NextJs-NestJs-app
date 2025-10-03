@@ -8,7 +8,7 @@ export const dbConfig = {
 
 // Configuration alternative pour le développement local
 export const localDbConfig = {
-  host: 'mysql-db',
+  host: 'localhost',
   user: 'root',
   password: '',
   database: 'chrono_carto'

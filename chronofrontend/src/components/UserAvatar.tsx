@@ -51,7 +51,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
       const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
       
       if (token) {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         
         const response = await fetch(`${API_BASE}/pdp/user/${userId}`, {
           headers: {

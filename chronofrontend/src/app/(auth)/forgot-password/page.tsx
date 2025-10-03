@@ -49,7 +49,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   setIsLoading(true);
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/auth/forgot-password`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/auth/forgot-password`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: formData.email }),

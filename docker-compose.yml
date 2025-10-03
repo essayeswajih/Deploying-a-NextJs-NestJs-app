@@ -4,22 +4,12 @@ services:
   # Backend (NestJS)
   backend:
     build: ./chronobackend
-    container_name: backend
+    container_name: nestjs-app
     restart: always
     ports:
       - "3001:3001"
-    environment:
-      - NODE_ENV=production
-      - PORT=3001
-      - DB_HOST=mysql-db
-      - DB_PORT=3306
-      - DB_USERNAME=samih_jeridi
-      - DB_PASSWORD=samih123@
-      - DB_DATABASE=chrono_carto
-      - FRONTEND_URL=https://www.chronocarto.tn
-      - BACKEND_URL=https://www.chronocarto.tn/api
-      - JWT_SECRET=your_jwt_secret_here
-      - JWT_EXPIRES_IN=24h
+    env_file:
+      - ./chronobackend/.env
     depends_on:
       db:
         condition: service_healthy
@@ -27,12 +17,10 @@ services:
   # Frontend (Next.js)
   frontend:
     build: ./chronofrontend
-    container_name: frontend
+    container_name: nextjs-frontend
     restart: always
-    environment:
-      - NEXT_PUBLIC_API_URL=https://www.chronocarto.tn/api
-      - NEXT_PUBLIC_APP_URL=https://www.chronocarto.tn
-      - NODE_ENV=production
+    env_file:
+      - ./chronofrontend/.env
     depends_on:
       backend:
         condition: service_started
@@ -56,7 +44,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "mysql-db", "-u", "root", "-psamih123@"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-psamih123@"]
       interval: 10s
       timeout: 5s
       retries: 5

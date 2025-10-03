@@ -183,7 +183,7 @@ const ChildrenProgressTab: React.FC<ChildrenProgressTabProps> = ({
             
             try {
               // Récupérer les résultats des quiz pour cet enfant
-              const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+              const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
               const attemptsResponse = await fetch(`${backendUrl}/quizzes/attempts?student_id=${child.id}`);
               
               if (attemptsResponse.ok) {
@@ -251,7 +251,7 @@ const ChildrenProgressTab: React.FC<ChildrenProgressTabProps> = ({
         setLoading(true);
         
         // Utiliser la même API que l'onglet Progrès de l'étudiant
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes/attempts?student_id=${currentChild.id}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes/attempts?student_id=${currentChild.id}`);
         
         if (!response.ok) {
           throw new Error(`Échec de récupération des tentatives: ${response.status}`);
@@ -263,7 +263,7 @@ const ChildrenProgressTab: React.FC<ChildrenProgressTabProps> = ({
         // Récupérer les détails des quiz pour chaque tentative
         const resultsWithDetails = await Promise.allSettled(
           attempts.map(async (attempt: any) => {
-            const quizResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'}/quizzes/${attempt.quiz_id}`);
+            const quizResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/quizzes/${attempt.quiz_id}`);
             if (!quizResponse.ok) return null;
             
             const quiz = await quizResponse.json();

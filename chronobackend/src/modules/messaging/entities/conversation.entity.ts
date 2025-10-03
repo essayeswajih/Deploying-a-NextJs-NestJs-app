@@ -40,11 +40,11 @@ export class Conversation {
   @JoinColumn({ name: 'groupe_id' })
   groupe: Groupe;
 
-  @ManyToOne(() => User, { nullable: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, { nullable: true })
   @JoinColumn({ name: 'participant1_id' })
   participant1: User;
 
-  @ManyToOne(() => User, { nullable: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, { nullable: true })
   @JoinColumn({ name: 'participant2_id' })
   participant2: User;
 

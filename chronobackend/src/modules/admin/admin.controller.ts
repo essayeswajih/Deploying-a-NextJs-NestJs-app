@@ -55,8 +55,19 @@ export class AdminController {
 
   // User approval
   @Patch('users/:id/approve')
-  approveUser(@Param('id') id: string, @Body() body: { approve: boolean }) {
-    return this.adminService.setUserApproval(parseInt(id), !!body?.approve);
+  async approveUser(@Param('id') id: string, @Body() body: { approve: boolean }) {
+    try {
+      const userId = parseInt(id);
+      if (isNaN(userId)) {
+        throw new Error('ID utilisateur invalide');
+      }
+      
+      const result = await this.adminService.setUserApproval(userId, !!body?.approve);
+      return result;
+    } catch (error) {
+      console.error(`❌ Error in approveUser controller:`, error);
+      throw error;
+    }
   }
 
   // Generic user deletion

@@ -4,7 +4,7 @@ const nextConfig = {
   // Allow cross-origin requests from your domain
   allowedDevOrigins: ['www.chronocarto.tn', '51.77.195.224'],
   images: {
-    domains: ['www.chronocarto.tn'],
+    domains: ['localhost'],
   },
   async headers() {
     return [
@@ -33,7 +33,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.chronocarto.tn/api https://51.77.195.224:3001; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' http://localhost:3001 http://51.77.195.224:3001; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
           },
         ],
       },
@@ -42,14 +42,10 @@ const nextConfig = {
   async rewrites() {
     // En production, utilisez l'URL de l'API déployée sur votre VPS
     const apiUrl = process.env.NODE_ENV === 'production' 
-      ? process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api'
-      : process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      ? process.env.NEXT_PUBLIC_API_URL || 'http://51.77.195.224:3001'
+      : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
     
     return [
-      // Conserver certaines routes API Next.js en local (ne pas proxy vers le backend)
-      { source: '/api/attendance', destination: '/api/attendance' },
-      { source: '/api/rendez-vous', destination: '/api/rendez-vous' },
-      { source: '/api/student/progress', destination: '/api/student/progress' },
       {
         source: '/api/:path*',
         destination: `${apiUrl}/api/:path*`,

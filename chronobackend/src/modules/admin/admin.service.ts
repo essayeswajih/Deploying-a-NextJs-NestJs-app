@@ -211,14 +211,11 @@ export class AdminService {
       throw new Error('Parent non trouvé');
     }
     
-    // Store user_id before deleting parent
-    const userId = parent.user_id;
-    
-    // Delete the parent first (this will also handle parent_student relations due to CASCADE)
+    // Delete the parent first
     await this.parentsService.remove(parentId);
     
-    // Then delete the associated user (conversations will be handled by CASCADE)
-    await this.usersService.remove(userId);
+    // Then delete the associated user
+    await this.usersService.remove(parent.user_id);
     
     return { success: true };
   }
@@ -226,13 +223,26 @@ export class AdminService {
   async setUserApproval(userId: number, approve: boolean) {
     // The ID passed is the user ID, so we can directly update the user
     try {
+      // First, check if the user exists
+      const existingUser = await this.usersService.findById(userId);
+      if (!existingUser) {
+        console.error(`❌ User ${userId} not found`);
+        throw new Error(`Utilisateur avec l'ID ${userId} non trouvé`);
+      }
+
+      console.log(`🔄 Updating user ${userId} (${existingUser.email}) approval status to: ${approve}`);
+      
       const updatedUser = await this.usersService.update(userId, { 
         is_approved: approve, 
         is_active: approve 
       } as any);
       
       console.log(`✅ User ${userId} approval status updated to: ${approve}`);
-      return updatedUser;
+      return {
+        success: true,
+        message: `Utilisateur ${existingUser.email} ${approve ? 'approuvé' : 'désapprouvé'} avec succès`,
+        user: updatedUser
+      };
     } catch (error) {
       console.error(`❌ Error updating user ${userId} approval:`, error);
       throw new Error(`Erreur lors de la mise à jour de l'utilisateur: ${error.message}`);

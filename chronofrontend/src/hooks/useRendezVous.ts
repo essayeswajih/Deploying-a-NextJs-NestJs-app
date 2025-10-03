@@ -67,48 +67,6 @@ export function useRendezVous() {
       
       // En cas d'erreur, utiliser des données simulées comme fallback
       const mockRendezVous: RendezVous[] = [
-        {
-          id: '1',
-          parentId: 'parent1',
-          parentName: 'Marie Dupont',
-          parentEmail: 'marie.dupont@email.com',
-          parentPhone: '06 12 34 56 78',
-          childName: 'Lucas Dupont',
-          childClass: '4ème A',
-          timing: '2025-12-25T14:00:00',
-          parentReason: 'Mon fils a des difficultés à se concentrer en classe et semble avoir des problèmes avec certains camarades. J\'aimerais discuter de la situation avec vous.',
-          status: 'pending',
-          createdAt: '2025-12-20T10:30:00',
-          updatedAt: '2025-12-20T10:30:00'
-        },
-        {
-          id: '2',
-          parentId: 'parent2',
-          parentName: 'Jean Martin',
-          parentEmail: 'jean.martin@email.com',
-          parentPhone: '06 98 76 54 32',
-          childName: 'Emma Martin',
-          childClass: '6ème B',
-          timing: '2025-12-26T16:00:00',
-          parentReason: 'Je souhaite faire le point sur les progrès de ma fille et discuter de ses résultats récents.',
-          status: 'pending',
-          createdAt: '2025-12-20T08:00:00',
-          updatedAt: '2025-12-20T08:00:00'
-        },
-        {
-          id: '3',
-          parentId: 'parent3',
-          parentName: 'Sophie Bernard',
-          parentEmail: 'sophie.bernard@email.com',
-          parentPhone: '06 11 22 33 44',
-          childName: 'Thomas Bernard',
-          childClass: '5ème C',
-          timing: '2025-12-21T09:00:00',
-          parentReason: 'Mon fils a été victime de harcèlement. J\'ai besoin d\'une réunion en urgence pour résoudre cette situation.',
-          status: 'pending',
-          createdAt: '2025-12-20T06:00:00',
-          updatedAt: '2025-12-20T06:00:00'
-        }
       ];
       setRendezVous(mockRendezVous);
     } finally {

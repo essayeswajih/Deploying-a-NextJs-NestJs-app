@@ -235,7 +235,7 @@ const ResourcesTab: React.FC = () => {
   // Fonction de téléchargement
   const handleDownload = async (resource: Resource) => {
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       const token = localStorage.getItem('token') || localStorage.getItem('accessToken');
       
       if (!token) {
@@ -345,7 +345,7 @@ const ResourcesTab: React.FC = () => {
   // Fonction d'ouverture de fichier
   const handleOpenFile = async (resource: Resource) => {
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       const token = localStorage.getItem('token') || localStorage.getItem('accessToken');
       
       if (!token) {
@@ -389,7 +389,7 @@ const ResourcesTab: React.FC = () => {
   };
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
     const load = async () => {
       try {
         // Récupérer les détails de l'utilisateur
@@ -843,7 +843,7 @@ const ResourcesTab: React.FC = () => {
               onClick={async (e) => {
                 e.stopPropagation();
                 try {
-                  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://www.chronocarto.tn/api';
+                  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
                   const response = await fetch(`${API_BASE}/files/${resource.id}/download`, {
                     headers: {
                       'Authorization': `Bearer ${localStorage.getItem('token')}`
